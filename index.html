@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pappu Kumar Bharti | Senior Web Designer & Front-End Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f9fafb',
+                            100: '#f3f4f6',
+                            200: '#e5e7eb',
+                            300: '#d1d5db',
+                            400: '#9ca3af',
+                            500: '#6b7280',
+                            600: '#4b5563',
+                            700: '#374151',
+                            800: '#1f2937',
+                            900: '#111827',
+                            950: '#030712'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        // Init theme early to prevent flash
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <style>
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f4f4f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4d4d8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1aa;
+        }
+    </style>
+</head>
+<body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 font-sans antialiased selection:bg-zinc-900 selection:text-zinc-100 dark:selection:bg-zinc-200 dark:selection:text-zinc-900 transition-colors duration-200">
+
+    <!-- Header / Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <span class="w-10 h-10 rounded-lg bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 flex items-center justify-center font-bold text-lg group-hover:bg-zinc-700 dark:group-hover:bg-zinc-300 transition-colors">
+                        PB
+                    </span>
+                    <span class="font-bold text-lg tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+                        PKB<span class="text-zinc-500">.dev</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#about" class="text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors">About</a>
+                    <a href="#skills" class="text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors">Skills</a>
+                    <a href="#experience" class="text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors">Experience</a>
+                    <a href="#projects" class="text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors">Projects</a>
+                    <a href="#education" class="text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors">Education</a>
+                    <a href="#contact" class="px-4 py-2 rounded-lg bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all font-semibold">Contact Me</a>
+                    
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" aria-label="Toggle Light/Dark Theme" class="p-2.5 rounded-lg bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors">
+                        <i class="fa-solid fa-moon dark:hidden text-sm"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-sm"></i>
+                    </button>
+                </nav>
+
+                <!-- Mobile Header Right Actions -->
+                <div class="flex items-center gap-2 md:hidden">
+                    <button id="theme-toggle-mobile" aria-label="Toggle Light/Dark Theme" class="p-2 rounded-lg bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">
+                        <i class="fa-solid fa-moon dark:hidden text-base"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-base"></i>
+                    </button>
+                    <button id="mobile-menu-button" aria-label="Toggle Navigation Menu" class="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 p-2 rounded-lg focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800">About</a>
+            <a href="#skills" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800">Skills</a>
+            <a href="#experience" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800">Experience</a>
+            <a href="#projects" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800">Projects</a>
+            <a href="#education" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800">Education</a>
+            <a href="#contact" class="mobile-link block px-3 py-2.5 text-center rounded-md text-base font-semibold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950">Contact Me</a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-[calc(100vh-5rem)] flex items-center justify-center relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8 border-b border-zinc-200 dark:border-zinc-900">
+            <!-- Background Accent Lines -->
+            <div class="absolute inset-0 bg-[radial-gradient(#e4e4e7_1px,transparent_1px)] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:24px_24px] opacity-50 dark:opacity-30 pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <!-- Location & Status Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-200/80 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-8">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>New Delhi, India &bull; Open for Opportunities</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-100 mb-6 leading-tight">
+                    PAPPU KUMAR BHARTI
+                </h1>
+
+                <p class="text-lg sm:text-xl lg:text-2xl font-medium text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto mb-10 tracking-wide">
+                    SENIOR WEB DESIGNER <span class="text-zinc-400 dark:text-zinc-600">|</span> FRONT-END DEVELOPER
+                </p>
+
+                <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 font-normal leading-relaxed">
+                    Crafting sleek, high-performance, accessible, and ultra-responsive modern web interfaces with 7+ years of expertise.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+                    <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 font-semibold text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all transform active:scale-95 shadow-md flex items-center justify-center gap-2">
+                        <span>View Work</span>
+                        <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-zinc-200 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-300 dark:border-zinc-800 font-semibold text-sm hover:bg-zinc-300 dark:hover:bg-zinc-800 transition-all transform active:scale-95 flex items-center justify-center gap-2">
+                        <span>Contact Me</span>
+                        <i class="fa-regular fa-envelope text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Quick Contact Info / Links -->
+                <div class="flex items-center justify-center gap-6 text-zinc-600 dark:text-zinc-400 text-lg">
+                    <a href="mailto:pappukbharti94@gmail.com" class="hover:text-zinc-950 dark:hover:text-white transition-colors" title="Email Me">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                    <a href="tel:+919958920062" class="hover:text-zinc-950 dark:hover:text-white transition-colors" title="Call Me">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                    <span class="text-zinc-300 dark:text-zinc-800">|</span>
+                    <span class="text-xs text-zinc-500 font-mono">+91 9958920062</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Summary / About Me -->
+        <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-zinc-200 dark:border-zinc-900">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-4">
+                    <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-2">About Me</h2>
+                    <h3 class="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-100">7+ Years of Designing Digital Experiences</h3>
+                </div>
+                <div class="md:col-span-8 space-y-6 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <p class="text-base sm:text-lg">
+                        I am a <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">Senior Web Designer and Front-End Developer</strong> with over 7 years of professional hands-on experience creating responsive websites, web portals, directories, and high-converting landing pages.
+                    </p>
+                    <p>
+                        My primary expertise lies in bridging design and code—seamlessly translating complex <strong class="text-zinc-900 dark:text-zinc-200">Figma and PSD concepts</strong> into pixel-perfect, clean, and accessible production code using HTML5, CSS3, JavaScript (ES6+), React.js, and modern CSS frameworks like Tailwind CSS and Bootstrap.
+                    </p>
+                    <p>
+                        Beyond traditional frontend design, I bring full-lifecycle awareness with working knowledge of back-end environments including <strong class="text-zinc-900 dark:text-zinc-200">.NET Core, ASP.NET MVC, C#, and SQL Server</strong>, enabling smooth collaboration with backend engineers and enterprise development teams.
+                    </p>
+
+                    <!-- Key Highlights Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800/80">
+                            <div class="text-2xl font-bold text-zinc-950 dark:text-zinc-100">7+</div>
+                            <div class="text-xs text-zinc-500 mt-1">Years Experience</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800/80">
+                            <div class="text-2xl font-bold text-zinc-950 dark:text-zinc-100">21+</div>
+                            <div class="text-xs text-zinc-500 mt-1">Live Projects</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800/80">
+                            <div class="text-2xl font-bold text-zinc-950 dark:text-zinc-100">100%</div>
+                            <div class="text-xs text-zinc-500 mt-1">Responsive Code</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-zinc-200 dark:border-zinc-900">
+            <div class="mb-14">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-2">Capabilities</h2>
+                <h3 class="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-100">Technical Expertise</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Frontend Development -->
+                <div class="p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-zinc-200 dark:bg-zinc-800/80 flex items-center justify-center text-zinc-900 dark:text-zinc-200 mb-6 group-hover:bg-zinc-900 group-hover:text-zinc-50 dark:group-hover:bg-zinc-100 dark:group-hover:text-zinc-950 transition-colors">
+                        <i class="fa-solid fa-code text-lg"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-zinc-950 dark:text-zinc-100 mb-4">Frontend Dev</h4>
+                    <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> HTML5 & CSS3</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> JavaScript (ES6+)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> React.js</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Tailwind CSS</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Bootstrap 3/4/5</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> jQuery</li>
+                    </ul>
+                </div>
+
+                <!-- UI/UX & Design -->
+                <div class="p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-zinc-200 dark:bg-zinc-800/80 flex items-center justify-center text-zinc-900 dark:text-zinc-200 mb-6 group-hover:bg-zinc-900 group-hover:text-zinc-50 dark:group-hover:bg-zinc-100 dark:group-hover:text-zinc-950 transition-colors">
+                        <i class="fa-solid fa-pen-nib text-lg"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-zinc-950 dark:text-zinc-100 mb-4">UI/UX & Design</h4>
+                    <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Figma & Photoshop</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Figma-to-HTML</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> PSD-to-HTML</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Responsive Web Design</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> UI Systems</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Banners & Logos</li>
+                    </ul>
+                </div>
+
+                <!-- CSS Technologies -->
+                <div class="p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-zinc-200 dark:bg-zinc-800/80 flex items-center justify-center text-zinc-900 dark:text-zinc-200 mb-6 group-hover:bg-zinc-900 group-hover:text-zinc-50 dark:group-hover:bg-zinc-100 dark:group-hover:text-zinc-950 transition-colors">
+                        <i class="fa-solid fa-layer-group text-lg"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-zinc-950 dark:text-zinc-100 mb-4">CSS Architecture</h4>
+                    <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Sass & SCSS</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> LESS Preprocessors</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> BEM & Clean Styling</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Multi-theme Layouts</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Cross-Browser UX</li>
+                    </ul>
+                </div>
+
+                <!-- Backend & Tools -->
+                <div class="p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-zinc-200 dark:bg-zinc-800/80 flex items-center justify-center text-zinc-900 dark:text-zinc-200 mb-6 group-hover:bg-zinc-900 group-hover:text-zinc-50 dark:group-hover:bg-zinc-100 dark:group-hover:text-zinc-950 transition-colors">
+                        <i class="fa-solid fa-server text-lg"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-zinc-950 dark:text-zinc-100 mb-4">Backend & Tools</h4>
+                    <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> .NET Core</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> ASP.NET MVC & C#</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> SQL Server</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Git & GitHub</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-zinc-400 dark:text-zinc-600"></i> Visual Studio Code</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience Section -->
+        <section id="experience" class="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-zinc-200 dark:border-zinc-900">
+            <div class="mb-14">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-2">Career Journey</h2>
+                <h3 class="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-100">Professional Experience</h3>
+            </div>
+
+            <!-- Timeline -->
+            <div class="space-y-8 relative before:absolute before:inset-0 before:left-3 md:before:left-1/2 before:-translate-x-1/2 before:w-0.5 before:bg-zinc-300 dark:before:bg-zinc-800">
+                
+                <!-- Role 1 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="flex items-center md:w-1/2 md:pr-12 md:text-right order-1 md:order-1 mb-2 md:mb-0">
+                        <div class="w-full">
+                            <span class="inline-block px-3 py-1 text-xs font-semibold text-zinc-800 bg-zinc-200 dark:text-zinc-200 dark:bg-zinc-800/80 rounded-full mb-2">Aug 2022 – Present</span>
+                            <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100">Senior Web Designer / Front-End Developer</h4>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-medium">Specpick Online Services Pvt. Ltd.</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-3 md:left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-zinc-50 dark:bg-zinc-950 border-2 border-zinc-900 dark:border-zinc-400 group-hover:border-zinc-600 dark:group-hover:border-zinc-100 z-10 flex items-center justify-center transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-zinc-900 dark:bg-zinc-100"></div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 order-2 md:order-2">
+                        <div class="p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all text-sm text-zinc-600 dark:text-zinc-400 space-y-2">
+                            <p>&bull; Design and develop responsive engineering portals, directories, and web app interfaces.</p>
+                            <p>&bull; Convert complex Figma & PSD designs into pixel-perfect HTML/CSS production interfaces.</p>
+                            <p>&bull; Construct reusable UI components, multi-theme layouts, dynamic search filters, and product listings.</p>
+                            <p>&bull; Collaborate closely with software engineering teams to streamline UI implementation and cross-browser performance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="flex items-center md:w-1/2 md:pr-12 md:text-right order-1 md:order-1 mb-2 md:mb-0">
+                        <div class="w-full">
+                            <span class="inline-block px-3 py-1 text-xs font-semibold text-zinc-600 bg-zinc-200 dark:text-zinc-400 dark:bg-zinc-900 rounded-full mb-2">May 2022 – Aug 2022</span>
+                            <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100">Web Designer</h4>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-medium">Propzilla Infratech Pvt. Ltd.</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-3 md:left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-zinc-50 dark:bg-zinc-950 border-2 border-zinc-400 dark:border-zinc-700 group-hover:border-zinc-600 dark:group-hover:border-zinc-400 z-10 flex items-center justify-center transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 order-2 md:order-2">
+                        <div class="p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all text-sm text-zinc-600 dark:text-zinc-400 space-y-2">
+                            <p>&bull; Designed real-estate landing pages, websites, and high-conversion promotional assets.</p>
+                            <p>&bull; Created responsive layouts with HTML, CSS, JavaScript, jQuery, and Bootstrap framework.</p>
+                            <p>&bull; Crafted custom web banners, logos, and UI prototypes using Adobe Photoshop.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="flex items-center md:w-1/2 md:pr-12 md:text-right order-1 md:order-1 mb-2 md:mb-0">
+                        <div class="w-full">
+                            <span class="inline-block px-3 py-1 text-xs font-semibold text-zinc-600 bg-zinc-200 dark:text-zinc-400 dark:bg-zinc-900 rounded-full mb-2">Mar 2021 – May 2022</span>
+                            <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100">Web Designer</h4>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-medium">Berggruen Car Rentals Pvt. Ltd.</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-3 md:left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-zinc-50 dark:bg-zinc-950 border-2 border-zinc-400 dark:border-zinc-700 group-hover:border-zinc-600 dark:group-hover:border-zinc-400 z-10 flex items-center justify-center transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 order-2 md:order-2">
+                        <div class="p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all text-sm text-zinc-600 dark:text-zinc-400 space-y-2">
+                            <p>&bull; Designed end-to-end car booking UI layouts, dashboard templates, and mobile views.</p>
+                            <p>&bull; Optimized UI consistency and streamlined user journeys across mobile and desktop devices.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="flex items-center md:w-1/2 md:pr-12 md:text-right order-1 md:order-1 mb-2 md:mb-0">
+                        <div class="w-full">
+                            <span class="inline-block px-3 py-1 text-xs font-semibold text-zinc-600 bg-zinc-200 dark:text-zinc-400 dark:bg-zinc-900 rounded-full mb-2">Feb 2019 – Mar 2021</span>
+                            <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100">Web Designer</h4>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-medium">HRHelpBoard</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-3 md:left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-zinc-50 dark:bg-zinc-950 border-2 border-zinc-400 dark:border-zinc-700 group-hover:border-zinc-600 dark:group-hover:border-zinc-400 z-10 flex items-center justify-center transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 order-2 md:order-2">
+                        <div class="p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all text-sm text-zinc-600 dark:text-zinc-400 space-y-2">
+                            <p>&bull; Built and maintained cross-browser compatible website pages using HTML, CSS, JS & jQuery.</p>
+                            <p>&bull; Standardized layout structures to deliver seamless user experience for content-heavy pages.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Key Projects Section -->
+        <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-zinc-200 dark:border-zinc-900">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-2">Portfolio Showcase</h2>
+                    <h3 class="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-100">Featured Projects (21)</h3>
+                </div>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 max-w-md">
+                    Explore web applications, HR platforms, engineering directories, real estate portals, automotive solutions, and enterprise websites built with modern front-end tech stack.
+                </p>
+            </div>
+
+            <!-- Filter Category Buttons -->
+            <div class="flex flex-wrap items-center gap-2 mb-10 pb-2 border-b border-zinc-200 dark:border-zinc-900">
+                <button onclick="filterProjects('all', this)" class="project-filter-btn active px-4 py-2 rounded-lg text-xs font-semibold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 transition-all">All Projects (21)</button>
+                <button onclick="filterProjects('app', this)" class="project-filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-zinc-200 text-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 border border-zinc-300 dark:border-zinc-800 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all">Apps & SaaS</button>
+                <button onclick="filterProjects('portal', this)" class="project-filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-zinc-200 text-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 border border-zinc-300 dark:border-zinc-800 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all">Directories & Portals</button>
+                <button onclick="filterProjects('realestate', this)" class="project-filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-zinc-200 text-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 border border-zinc-300 dark:border-zinc-800 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all">Real Estate & Mobility</button>
+                <button onclick="filterProjects('corporate', this)" class="project-filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-zinc-200 text-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 border border-zinc-300 dark:border-zinc-800 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all">Corporate & HR</button>
+            </div>
+
+            <!-- Projects Grid (21 Projects) -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1. Ascent Solution -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="corporate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">01 / CORPORATE</span>
+                            <a href="https://www.ascentsolution.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors" title="Open Link">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Ascent Solution</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Corporate software solution website featuring clean responsive design layouts, service highlights, and modular components.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">JavaScript</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://www.ascentsolution.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. HRHelpBoard -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="corporate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">02 / HR PORTAL</span>
+                            <a href="https://www.hrhelpboard.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors" title="Open Link">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">HRHelpBoard</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Content-rich HR knowledge base and resource portal built for cross-browser performance and structured navigation.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">CSS3</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">jQuery</span>
+                        </div>
+                        <a href="https://www.hrhelpboard.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Fair Circles -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="realestate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">03 / REAL ESTATE</span>
+                            <a href="https://faircircles.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors" title="Open Link">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Fair Circles</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Real estate solution platform offering intuitive search and responsive mobile UI layouts converted from Figma.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">jQuery</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://faircircles.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. PRdrop.ai -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="app">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">04 / SAAS</span>
+                            <a href="https://prdrop.ai/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors" title="Open Link">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">PRdrop.ai</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">AI-driven platform interface designed for content distribution with clean layout and responsive UI controls.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">ASP.NET MVC</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap 5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://prdrop.ai/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. EverythingRF -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="portal">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">05 / PORTAL</span>
+                            <a href="https://www.everythingrf.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">EverythingRF</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Large-scale engineering portal and product directory with multi-filter search and responsive UI components.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5 / CSS3</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://www.everythingrf.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 6. Evans Group -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="corporate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">06 / CORPORATE</span>
+                            <a href="https://evans-group.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Evans Group</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Corporate web presence built with precision, featuring clean typography and flexible content layouts.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">ASP.NET MVC</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap 5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://evans-group.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 7. BIOT -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="corporate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">07 / BUSINESS</span>
+                            <a href="https://biotspl.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">BIOT</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Tech solution provider site featuring modern aesthetic, responsive grid, and concise user journeys.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">CSS3</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                        </div>
+                        <a href="https://biotspl.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 8. Propzilla -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="realestate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">08 / REAL ESTATE</span>
+                            <a href="https://propzilla.in/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Propzilla</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Real estate property portal built with immersive property showcases and mobile-first interface design.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Photoshop</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">jQuery</span>
+                        </div>
+                        <a href="https://propzilla.in/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 9. Beauty UK 07 -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="corporate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">09 / BEAUTY & E-COM</span>
+                            <a href="https://beautyuk07.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Beauty UK 07</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Beauty and lifestyle website emphasizing visual branding, product galleries, and fluid interaction.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">CSS3</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                        </div>
+                        <a href="https://beautyuk07.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 10. Angel Wings Hospital -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="corporate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">10 / HEALTHCARE</span>
+                            <a href="https://angelwingshospital.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Angel Wings Hospital</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Healthcare hospital portal designed for seamless patient navigation, service details, and appointment info.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">JavaScript</span>
+                        </div>
+                        <a href="https://angelwingshospital.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 11. Luxury Residences -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="realestate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">11 / LUXURY REALTY</span>
+                            <a href="https://luxuryresidences.in/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Luxury Residences</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">High-end luxury residence portal featuring ultra-clean aesthetic and responsive image galleries.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">jQuery</span>
+                        </div>
+                        <a href="https://luxuryresidences.in/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 12. Kesiray -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="app">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">12 / WEB APP</span>
+                            <a href="http://kesiray.buildbot.io/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Kesiray</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Interactive web application built with responsive components, dynamic layout, and modern client-side features.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Tailwind CSS</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="http://kesiray.buildbot.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Demo</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 13. Starfish Demo -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="app">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">13 / DEMO APP</span>
+                            <a href="http://starfish-demo.buildbot.io/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Starfish Demo</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Custom web interface prototype showcasing optimized front-end layout and responsive user interaction.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="http://starfish-demo.buildbot.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Demo</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 14. Raven Demo -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="app">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">14 / DEMO APP</span>
+                            <a href="http://raven-demo.buildbot.io/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Raven Demo</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Dynamic Web app interface prototype featuring clean UI styling and scalable design structure.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="http://raven-demo.buildbot.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Demo</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 15. Azore Demo -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="app">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">15 / DEMO APP</span>
+                            <a href="http://azore-demo.buildbot.io/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Azore Demo</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Sleek front-end prototype designed for optimal viewing performance across tablet and mobile displays.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="http://azore-demo.buildbot.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Demo</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 16. Unmanned Times -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="portal">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">16 / MEDIA & DIRECTORY</span>
+                            <a href="https://www.unmannedtimes.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Unmanned Times</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Industry portal and digital publication dedicated to autonomous systems, drones, and robotics technology.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://www.unmannedtimes.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 17. EMC Directory -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="portal">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">17 / DIRECTORY</span>
+                            <a href="https://www.emc-directory.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">EMC Directory</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Comprehensive global directory platform for electromagnetic compatibility testing, equipment, and services.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://www.emc-directory.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 18. Rent N Rev -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="realestate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">18 / MOBILITY & RENTAL</span>
+                            <a href="https://www.rentnrev.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Rent N Rev</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Vehicle rental platform with intuitive search, dynamic booking workflow, and responsive pricing grids.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://www.rentnrev.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 19. Drive Car Club -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="realestate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">19 / AUTOMOTIVE</span>
+                            <a href="https://www.drivecarclub.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Drive Car Club</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Premium automotive club web platform with luxury car showcase, membership plans, and visual layouts.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://www.drivecarclub.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 20. Select Cabs -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="realestate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">20 / CAB & TRANSPORT</span>
+                            <a href="https://www.selectcabs.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Select Cabs</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Cab booking service website engineered with mobile-first responsiveness and streamlined booking form flows.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://www.selectcabs.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 21. Arxis -->
+                <div class="project-card p-6 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex flex-col justify-between group" data-category="app">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-zinc-500">21 / ENTERPRISE</span>
+                            <a href="https://www.arxis.com/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mb-2">Arxis</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">Enterprise digital interface offering clean structured navigation, services presentation, and fast load speeds.</p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">HTML5</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Bootstrap</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300 font-mono">Figma</span>
+                        </div>
+                        <a href="https://www.arxis.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white">
+                            <span>Visit Live Site</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-zinc-200 dark:border-zinc-900">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-4">
+                    <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-2">Background</h2>
+                    <h3 class="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-100">Education</h3>
+                </div>
+                <div class="md:col-span-8">
+                    <div class="p-8 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs font-mono text-zinc-500">DEGREE</span>
+                            <h4 class="text-xl font-bold text-zinc-950 dark:text-zinc-100 mt-1">Bachelor of Science (B.Sc.)</h4>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">J. P. University</p>
+                        </div>
+                        <div class="px-3 py-1 rounded bg-zinc-200 dark:bg-zinc-800 text-xs font-medium text-zinc-800 dark:text-zinc-300">
+                            Graduated
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-5">
+                    <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-2">Get In Touch</h2>
+                    <h3 class="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-100 mb-6">Let's build something remarkable together.</h3>
+                    <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-8">
+                        Whether you are looking for a Senior Web Designer, Front-End Developer, or need to convert Figma designs into modern, performant web applications, feel free to drop a message.
+                    </p>
+
+                    <!-- Direct Info Cards -->
+                    <div class="space-y-4">
+                        <a href="mailto:pappukbharti94@gmail.com" class="flex items-center gap-4 p-4 rounded-xl bg-zinc-100/80 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-colors group">
+                            <div class="w-10 h-10 rounded-lg bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-200 group-hover:bg-zinc-900 group-hover:text-zinc-50 dark:group-hover:bg-zinc-100 dark:group-hover:text-zinc-950 transition-colors">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-zinc-500 font-medium">Email Me</div>
+                                <div class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">pappukbharti94@gmail.com</div>
+                            </div>
+                        </a>
+
+                        <a href="tel:+919958920062" class="flex items-center gap-4 p-4 rounded-xl bg-zinc-100/80 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 transition-colors group">
+                            <div class="w-10 h-10 rounded-lg bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-200 group-hover:bg-zinc-900 group-hover:text-zinc-50 dark:group-hover:bg-zinc-100 dark:group-hover:text-zinc-950 transition-colors">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-zinc-500 font-medium">Call Me</div>
+                                <div class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">+91 9958920062</div>
+                            </div>
+                        </a>
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-zinc-100/80 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800">
+                            <div class="w-10 h-10 rounded-lg bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-200">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-zinc-500 font-medium">Location</div>
+                                <div class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">New Delhi, India</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="md:col-span-7">
+                    <div class="p-8 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800">
+                        <form id="contact-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                            <div>
+                                <label for="name" class="block text-xs font-semibold uppercase text-zinc-600 dark:text-zinc-400 mb-2">Your Name</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-zinc-500 text-sm transition-colors" placeholder="John Doe">
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-xs font-semibold uppercase text-zinc-600 dark:text-zinc-400 mb-2">Email Address</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-zinc-500 text-sm transition-colors" placeholder="john@example.com">
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-xs font-semibold uppercase text-zinc-600 dark:text-zinc-400 mb-2">Message</label>
+                                <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-zinc-500 text-sm transition-colors" placeholder="Hi Pappu, I'd like to discuss a project..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 font-semibold text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-md">
+                                Send Message
+                            </button>
+                        </form>
+
+                        <!-- Notification Box -->
+                        <div id="form-notification" class="hidden mt-4 p-4 rounded-xl text-center text-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-200 dark:border-zinc-900 py-8 bg-zinc-50 dark:bg-zinc-950 text-center text-xs text-zinc-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; <span id="year"></span> PAPPU KUMAR BHARTI. All Rights Reserved.</p>
+            <p class="text-zinc-400 dark:text-zinc-600">Senior Web Designer | Front-End Developer</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Theme Toggle Functionality
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
+        // Auto Update Copyright Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Project Filtering Logic
+        function filterProjects(category, buttonEl) {
+            const cards = document.querySelectorAll('.project-card');
+            const filterBtns = document.querySelectorAll('.project-filter-btn');
+
+            filterBtns.forEach(btn => {
+                btn.className = 'project-filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-zinc-200 text-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 border border-zinc-300 dark:border-zinc-800 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all';
+            });
+
+            buttonEl.className = 'project-filter-btn active px-4 py-2 rounded-lg text-xs font-semibold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 transition-all';
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Mobile Navigation Toggle Logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu on clicking any link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Contact Form Handling
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const notification = document.getElementById('form-notification');
+            const form = document.getElementById('contact-form');
+
+            // Visual feedback
+            notification.className = "mt-4 p-4 rounded-xl text-center text-sm bg-emerald-100 border border-emerald-300 text-emerald-900 dark:bg-emerald-950/80 dark:border-emerald-800 dark:text-emerald-200";
+            notification.textContent = "Thank you! Your message has been received. I will get back to you shortly.";
+            notification.classList.remove('hidden');
+
+            form.reset();
+
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
